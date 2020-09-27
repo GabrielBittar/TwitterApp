@@ -10,6 +10,8 @@ import java.net.UnknownHostException;
 import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
 
+import javax.swing.plaf.basic.BasicDirectoryModel;
+
 public class TwitterApp {
     private ConfigurationBuilder cb;
     private DB database;
@@ -69,7 +71,18 @@ public class TwitterApp {
     }
 
     public void conectaMongoDB() {
-
+        try {
+            Mongo mongoCli;
+            mongoCli = new MongoClient(""); // Rodando o Mongo no Docker, inserir o IP do container
+            database = mongoCli.getDB("twDB");
+            collection = database.getCollection("tweets");
+            BasicDBObject index = new BasicDBObject("tweet_ID",1);
+            collection.ensureIndex(index, new BasicDBObject("unique", true));
+        }catch (UnknownHostException unknownEx){
+            System.out.println("MongoException: " + unknownEx.getMessage());
+        }catch (Exception e){
+            System.out.println("Exception: " + e);
+        }
     }
 
     public static void main(String[] args) throws InterruptedException {
