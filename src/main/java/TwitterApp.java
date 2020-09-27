@@ -16,10 +16,6 @@ public class TwitterApp {
     private DBCollection collection;
 
     public void capturaTweets() throws InterruptedException {
-
-    }
-
-    public void configuraCredenciais() {
         TwitterStream twitterStream = new TwitterStreamFactory(cb.build()).getInstance();
         StatusListener listener = new StatusListener() {
             public void onStatus(Status status) {
@@ -55,6 +51,15 @@ public class TwitterApp {
 
             }
         };
+
+        String palavrasParaBuscar[] = {"Chopin"};
+        FilterQuery fq = new FilterQuery();
+        fq.track(palavrasParaBuscar);
+        twitterStream.addListener(listener);
+        twitterStream.filter(fq);
+    }
+
+    public void configuraCredenciais() {
 
     }
 
