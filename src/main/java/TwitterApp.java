@@ -86,6 +86,9 @@ public class TwitterApp {
     }
 
     public static void main(String[] args) throws InterruptedException {
-
+        TwitterApp tw = new TwitterApp();
+        tw.conectaMongoDB();
+        tw.configuraCredenciais();
+        tw.capturaTweets();
     }
 }
