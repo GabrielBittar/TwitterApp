@@ -65,7 +65,7 @@ public class TwitterApp {
         cb.setOAuthConsumerKey("");
         cb.setOAuthConsumerSecret("");
         cb.setOAuthAccessToken("");
-        cb.setOAuthAccessTokenSecret("");
+        cb.setOAuthAccessTokenSecret("");//
     }
 
     public void conectaMongoDB() {
