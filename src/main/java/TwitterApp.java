@@ -60,7 +60,12 @@ public class TwitterApp {
     }
 
     public void configuraCredenciais() {
-
+        cb = new ConfigurationBuilder();
+        cb.setDebugEnabled(true);
+        cb.setOAuthConsumerKey("");
+        cb.setOAuthConsumerSecret("");
+        cb.setOAuthAccessToken("");
+        cb.setOAuthAccessTokenSecret("");
     }
 
     public void conectaMongoDB() {
