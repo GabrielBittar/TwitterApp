@@ -24,7 +24,15 @@ public class TwitterApp {
         StatusListener listener = new StatusListener() {
             public void onStatus(Status status) {
                 BasicDBObject dbObject = new BasicDBObject();
+                dbObject.put("tweet_ID", status.getId());
+                dbObject.put("usuario", status.getUser().getScreenName());
+                dbObject.put("tweet", status.getText());
 
+                try{
+                    collection.insert(dbObject);
+                }catch (Exception e){
+                    System.out.println("Erro de conexão: " + e.getMessage());
+                }
             }
 
             public void onDeletionNotice(StatusDeletionNotice statusDeletionNotice) {
@@ -46,7 +54,8 @@ public class TwitterApp {
             public void onException(Exception e) {
 
             }
-        }
+        };
+
     }
 
     public void conectaMongoDB() {
